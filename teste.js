@@ -93,3 +93,50 @@ window.onclick = function (event) {
     closeLoginModal()
   }
 }
+
+function showLoginModal() {
+  document.getElementById('loginModal').style.display = 'flex'
+}
+
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none'
+  document.getElementById('loginError').style.display = 'none' // Oculta mensagem de erro
+}
+
+// Função de autenticação de login
+async function autenticarLogin() {
+  const username = document.getElementById('username').value
+  const password = document.getElementById('password').value
+
+  try {
+    const response = await fetch('http://localhost:4000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
+
+    if (!response.ok) throw new Error('Login inválido')
+
+    const result = await response.json()
+
+    if (result.success) {
+      closeLoginModal() // Fecha o modal caso o login seja bem-sucedido
+      alert('Login realizado com sucesso!')
+    } else {
+      document.getElementById('loginError').style.display = 'block'
+    }
+  } catch (err) {
+    console.error('Erro ao fazer login:', err)
+    document.getElementById('loginError').style.display = 'block'
+  }
+}
+
+// Fechar o modal ao clicar fora da área do formulário
+window.onclick = function (event) {
+  const modal = document.getElementById('loginModal')
+  if (event.target === modal) {
+    closeLoginModal()
+  }
+}

@@ -37,3 +37,18 @@ exports.findALL = async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar pubs' })
   }
 }
+exports.validateUser = async (req, res) => {
+  try {
+    const { email, senha } = req.body
+    const user = await User.findOne({ where: { email } })
+
+    if (senha !== user.senha) {
+      return res
+        .status(401)
+        .json({ auth: false, message: 'Senha ou usuários incorretos!' })
+    }
+    return res.json({ auth: true })
+  } catch (error) {
+    console.error('erro ao logar' + error)
+  }
+}
