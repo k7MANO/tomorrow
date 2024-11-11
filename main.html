@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Pub Central</title>
+  </head>
+  <header>
+    <div class="logo">Logo Genérica</div>
+    <button class="login-button" onclick="showLoginModal()">Login</button>
+  </header>
+
+  <!-- Container centralizado dos pubs -->
+  <main>
+    <div id="livrosContainer">
+      <!-- Os pubs serão exibidos aqui -->
+    </div>
+  </main>
+
+  <!-- Footer com ícones de redes sociais -->
+  <footer>
+    <a href="#" aria-label="Facebook">&#x1F426;</a>
+    <a href="#" aria-label="Twitter">&#x1F426;</a>
+    <a href="#" aria-label="Instagram">&#x1F426;</a>
+  </footer>
+
+  <!-- Modal de Login -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <form action="/showLogin" method="post">
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="uname" required />
+
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required />
+
+          <button type="submit" class="loginbtn">Login</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember" /> Remember me
+          </label>
+        </div>
+
+        <div class="container" style="background-color: #f1f1f1">
+          <button type="button" class="cancelbtn" onclick="closeLoginModal()">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <script src="/views/teste.js"></script>
+  </body>
+</html>
